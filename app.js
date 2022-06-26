@@ -100,6 +100,3 @@ app.delete("/:id", async (req, res) => {
     res.status(500).send(error);
   }
 });
-server.listen(3001, () => {
-  console.log("Listening on port 3001");
-});
