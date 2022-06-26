@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>A true Degen</title>
+  </head>
+  <body>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      body {
+        color: white;
+        background-color: rgb(53, 28, 28);
+      }
+      #showw {
+        width: 50%;
+      }
+      h2 {
+        text-align: center;
+      }
+      #question {
+        text-align: center;
+        margin-top: 8vh;
+      }
+      .card > ul {
+        list-style: none;
+        display: flex;
+        flex-flow: column wrap;
+        height: inherit;
+        margin: 0;
+      }
+
+      .card > ul > li {
+        border: solid;
+        padding: 2px;
+        border-width: 2px;
+        border-color: green;
+        background-color: black;
+        margin: 2px;
+        text-align: center;
+        flex: 0 0 auto;
+      }
+      #diva {
+        padding: 5px;
+        width: 100%;
+        height: 30vh;
+        display: flex;
+        justify-content: space-around;
+        margin-top: 10vh;
+      }
+      .card {
+        width: 50%;
+        height: 40vh;
+        background: rgba(0, 0, 0, 0.705);
+        box-shadow: rgba(100, 100, 111, 0.7) 0px 7px 29px 0px;
+        padding: 10px;
+      }
+      .mm {
+        width: 100%;
+        height: 90vh;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+      }
+      button {
+        width: 30%;
+        height: 5vh;
+        padding: 4px;
+        color: white;
+        background-color: rgb(6, 35, 90);
+        border-radius: 10px;
+        border-color: white;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        cursor: pointer;
+      }
+      button:hover {
+        padding: 10px;
+        transition: 500ms;
+        height: 5.5vh;
+        width: 31.3%;
+      }
+    </style>
+    <div class="mm">
+      <div class="card">
+        <h2 id="wels">Welcome to A True Degen 2</h2>
+        <ul id="ulist"></ul>
+        <p id="question">
+          Answer the following questions to see how much you know about the
+          degen community
+        </p>
+        <div id="diva">
+          <button id="firstOne" onclick="clicked(this)">First Option</button>
+          <button id="secondOne" onclick="clicked(this)">Second Option</button>
+          <button id="thirdOne" onclick="clicked(this)">Third Option</button>
+          <button id="showw">Show other Results</button>
+        </div>
+      </div>
+      <button onclick="nextQuestion()" style="margin: 10px" id="start">
+        Start Now
+      </button>
+    </div>
+  </body>
+  <script src="socket.io/socket.io.js"></script>
+  <script>
+    var socket = io();
+    const form = document.getElementById("start");
+  </script>
+  <script>
+    let discordID = prompt("Enter discord ID to procced");
+    const questions = [
+      {
+        question: "What is my favorite Food?",
+        answers: [
+          { answerText: "Yam", isCorrect: "false" },
+          { answerText: "Bread", isCorrect: "false" },
+          { answerText: "Rice", isCorrect: "true" },
+        ],
+      },
+      {
+        question: "What is my favorite place?",
+        answers: [
+          { answerText: "Dubai", isCorrect: "false" },
+          { answerText: "USA", isCorrect: "true" },
+          { answerText: "France", isCorrect: "false" },
+        ],
+      },
+      {
+        question: "What is my favorite Movie?",
+        answers: [
+          { answerText: "Money Hiest", isCorrect: "false" },
+          { answerText: "Vicenzo", isCorrect: "false" },
+          { answerText: "Healer", isCorrect: "true" },
+        ],
+      },
+      {
+        question: "What is my favorite Car?",
+        answers: [
+          { answerText: "Bently", isCorrect: "false" },
+          { answerText: "Lamboghini", isCorrect: "true" },
+          { answerText: "Mclaren", isCorrect: "false" },
+        ],
+      },
+      {
+        question: "What is my favorite Car?",
+        answers: [
+          { answerText: "Bently", isCorrect: "false" },
+          { answerText: "Lamboghini", isCorrect: "true" },
+          { answerText: "Mclaren", isCorrect: "false" },
+        ],
+      },
+      {
+        question: "What is my favorite Car?",
+        answers: [
+          { answerText: "Bently", isCorrect: "false" },
+          { answerText: "Lamboghini", isCorrect: "true" },
+          { answerText: "Mclaren", isCorrect: "false" },
+        ],
+      },
+      {
+        question: "What is my favorite Car?",
+        answers: [
+          { answerText: "Bently", isCorrect: "false" },
+          { answerText: "Lamboghini", isCorrect: "true" },
+          { answerText: "Mclaren", isCorrect: "false" },
+        ],
+      },
+      {
+        question: "What is my favorite Car?",
+        answers: [
+          { answerText: "Bently", isCorrect: "false" },
+          { answerText: "Lamboghini", isCorrect: "true" },
+          { answerText: "Mclaren", isCorrect: "false" },
+        ],
+      },
+    ];
+    document.getElementById("showw").style.display = "none";
+    document.getElementById("ulist").style.display = "none";
+    var diva = document.getElementById("diva");
+    var count = 0;
+    var questionTag = document.getElementById("question");
+    var first = document.getElementById("firstOne");
+    var second = document.getElementById("secondOne");
+    var third = document.getElementById("thirdOne");
+    let results = 0;
+
+    var socket = io();
+    const nextQuestion = () => {
+      document.getElementById("start").innerHTML = "Next";
+      const arrItems = [first, second, third];
+      for (let index = 0; index < arrItems.length; index++) {
+        arrItems[index].style.backgroundColor = "blue";
+      }
+      if (count < questions.length) {
+        first.disabled = false;
+        second.disabled = false;
+        third.disabled = false;
+        questionTag.innerHTML = questions[count].question;
+        first.innerHTML = questions[count].answers[0].answerText;
+        second.innerHTML = questions[count].answers[1].answerText;
+        third.innerHTML = questions[count].answers[2].answerText;
+        first.value = questions[count].answers[0].isCorrect;
+        second.value = questions[count].answers[1].isCorrect;
+        third.value = questions[count].answers[2].isCorrect;
+        console.log(count);
+        if (count == questions.length - 1) {
+          count++;
+          if (count == questions.length) {
+            console.log("Answer is " + results);
+            socket.emit("new", [discordID, results]);
+            questionTag.innerHTML = results + " / 10";
+            questionTag.style.fontSize = "30px";
+            document.getElementById("showw").style.display = "block";
+            document.getElementById("start").style.display = "none";
+            for (let index = 0; index < arrItems.length; index++) {
+              arrItems[index].style.display = "none";
+            }
+          }
+        } else {
+          count++;
+        }
+      }
+    };
+
+    const isCorrect = "true";
+    const clicked = (e) => {
+      const arrItems = [first, second, third];
+      first.disabled = true;
+      second.disabled = true;
+      third.disabled = true;
+      if (e.value == isCorrect) {
+        document.getElementById(e.id).style.backgroundColor = "green";
+        console.log("Correct");
+        results++;
+      } else {
+        for (let index = 0; index < arrItems.length; index++) {
+          if (arrItems[index].value == isCorrect) {
+            arrItems[index].style.backgroundColor = "green";
+          } else {
+            arrItems[index].style.backgroundColor = "red";
+          }
+        }
+        console.log("Wrong");
+      }
+    };
+  </script>
+  <script>
+    var detect = 0;
+    var dataArray = [];
+    var questionTag = document.getElementById("question");
+    var h1Tag = document.getElementById("wels");
+    const button1 = document.getElementById("showw");
+    const list = document.getElementById("ulist");
+    button1.addEventListener("click", function (e) {
+      detect++;
+      console.log("clicked");
+      socket.on("hello", (arg) => {
+        dataArray = arg;
+      });
+      fetch("/clicked", { method: "GET" })
+        .then((response) => {
+          if (response.ok) {
+            return;
+          }
+          throw new Error("Request failed");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      console.log(dataArray);
+      if (detect == 2) {
+        button1.style.display = "none";
+        list.style.display = "flex";
+        questionTag.style.display = "none";
+        h1Tag.innerHTML = "Results";
+        for (let index = 0; index < dataArray.length; index++) {
+          list.innerHTML += `<li>${
+            dataArray[index].title + " " + dataArray[index].content
+          }</li>`;
+        }
+      }
+    });
+  </script>
+</html>

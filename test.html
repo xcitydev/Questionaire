@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Top scores</title>
+  </head>
+  <body>
+    <div>
+      <img src="dege.png" width="300px" />
+      <img src="dege.png" width="300px" />
+      <img src="dege.png" width="300px" />
+      <ul id="ulist"></ul>
+    </div>
+    <img src="dege.png" width="300px" /><span>
+      <img src="dege.png" width="300px" />
+    </span>
+    <button onclick="init()">Json</button>
+    <script>
+      const ulist = document.getElementById("ulist");
+      function loadJson(callback) {
+        var xobj = new XMLHttpRequest();
+        xobj.overrideMimeType("application/json");
+        xobj.open("GET", "array.json", true);
+        xobj.onreadystatechange = function () {
+          if (xobj.readyState == 4 && xobj.status == "200") {
+            callback(xobj.responseText);
+          }
+        };
+        xobj.send(null);
+      }
+      function init() {
+        loadJson(function (response) {
+          var actual_JSON = JSON.parse(response);
+          actual_JSON.map((item) => {
+            ulist.innerHTML += `<li>${item.title + " " + item.content}</li>`;
+          });
+          console.log(actual_JSON);
+        });
+      }
+    </script>
+  </body>
+</html>
