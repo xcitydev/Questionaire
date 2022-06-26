@@ -62,7 +62,7 @@ app.get("/clicked", async (req, res) => {
 
     fs.writeFile("array.json", JSON.stringify(posts), (err) => {
       if (err) throw err;
-      console.log("conplete");
+      console.log(posts);
     });
     console.log(posts[0].title, posts[0].content);
   } catch (error) {
