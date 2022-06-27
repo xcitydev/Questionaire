@@ -249,18 +249,23 @@
     };
   </script>
   <script>
-    var detect = 0;
+    const arrayData = fetch("/array").then((response) => {
+      return response.json();
+    });
     var dataArray = [];
+    const itemss = async () => {
+      const a = await arrayData;
+      dataArray = a;
+      console.log(a);
+    };
     var questionTag = document.getElementById("question");
     var h1Tag = document.getElementById("wels");
     const button1 = document.getElementById("showw");
     const list = document.getElementById("ulist");
+    var detect = 0;
     button1.addEventListener("click", function (e) {
       detect++;
-      console.log("clicked");
-      socket.on("hello", (arg) => {
-        dataArray = arg;
-      });
+      itemss();
       fetch("/clicked", { method: "GET" })
         .then((response) => {
           if (response.ok) {
@@ -271,7 +276,6 @@
         .catch((error) => {
           console.log(error);
         });
-      console.log(dataArray);
       if (detect == 2) {
         list.style.display = "flex";
         questionTag.style.display = "none";

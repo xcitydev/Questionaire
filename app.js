@@ -42,8 +42,8 @@ io.on("connection", (socket) => {
 // Crud Application
 
 // Test
-io.on("connection", (socket) => {
-  socket.emit("hello", array);
+app.get("/array", async (req, res) => {
+  res.json(array);
 });
 // Test
 app.post("/", async (req, res) => {
@@ -62,7 +62,7 @@ app.get("/clicked", async (req, res) => {
 
     fs.writeFile("array.json", JSON.stringify(posts), (err) => {
       if (err) throw err;
-      console.log(posts);
+      console.log("conplete");
     });
     console.log(posts[0].title, posts[0].content);
   } catch (error) {
