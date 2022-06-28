@@ -35,6 +35,8 @@
       }
 
       .card > ul > li {
+        display: flex;
+        justify-content: space-between;
         border: solid;
         padding: 2px;
         border-width: 2px;
@@ -219,6 +221,17 @@
             for (let index = 0; index < arrItems.length; index++) {
               arrItems[index].style.display = "none";
             }
+            fetch("/clicked", { method: "GET" })
+              .then((response) => {
+                if (response.ok) {
+                  console.log("clicked Test");
+                  return;
+                }
+                throw new Error("Request failed");
+              })
+              .catch((error) => {
+                console.log(error);
+              });
           }
         } else {
           count++;
@@ -249,7 +262,8 @@
     };
   </script>
   <script>
-    const arrayData = fetch("/array").then((response) => {
+    var arrayData = fetch("/clicked").then((response) => {
+      console.log(response);
       return response.json();
     });
     var dataArray = [];
@@ -266,24 +280,15 @@
     button1.addEventListener("click", function (e) {
       detect++;
       itemss();
-      fetch("/clicked", { method: "GET" })
-        .then((response) => {
-          if (response.ok) {
-            return;
-          }
-          throw new Error("Request failed");
-        })
-        .catch((error) => {
-          console.log(error);
-        });
       if (detect == 2) {
         list.style.display = "flex";
         questionTag.style.display = "none";
         h1Tag.innerHTML = "Results";
         for (let index = 0; index < dataArray.length; index++) {
-          list.innerHTML += `<li>${
-            dataArray[index].title + " " + dataArray[index].content
-          }</li>`;
+          list.innerHTML += `<li><p>${dataArray[index].title}</p>${" "}<p>${
+            dataArray[index].content
+          }</p>
+          </li>`;
         }
       }
     });

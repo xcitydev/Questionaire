@@ -59,11 +59,11 @@ app.post("/", async (req, res) => {
 app.get("/clicked", async (req, res) => {
   try {
     const posts = await postModel.find();
-
-    fs.writeFile("array.json", JSON.stringify(posts), (err) => {
-      if (err) throw err;
-      console.log("conplete");
-    });
+    res.json(posts);
+    // fs.writeFile("array.json", JSON.stringify(posts), (err) => {
+    //   if (err) throw err;
+    //   console.log("conplete");
+    // });
     console.log(posts[0].title, posts[0].content);
   } catch (error) {
     res.status(500).send(error);
