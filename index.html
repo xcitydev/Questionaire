@@ -113,70 +113,137 @@
     const form = document.getElementById("start");
   </script>
   <script>
-    let discordID = prompt("Enter discord ID to procced");
+    let discordID = prompt("Enter discord ID to procced", "");
+    while (discordID == null || discordID == "") {
+      let discordID = prompt("You must enter your discord ID to procced");
+    }
     const questions = [
       {
-        question: "What is my favorite Food?",
+        question:
+          "Who was the first to send a message to the announcement channel?",
         answers: [
-          { answerText: "Yam", isCorrect: "false" },
-          { answerText: "Bread", isCorrect: "false" },
-          { answerText: "Rice", isCorrect: "true" },
+          { answerText: "Ryuk", isCorrect: "false" },
+          { answerText: "Urkann", isCorrect: "false" },
+          { answerText: "Brian", isCorrect: "true" },
         ],
       },
       {
-        question: "What is my favorite place?",
+        question: 'Who said this "i will always stand by my troops"?',
         answers: [
-          { answerText: "Dubai", isCorrect: "false" },
-          { answerText: "USA", isCorrect: "true" },
-          { answerText: "France", isCorrect: "false" },
+          { answerText: "Khad", isCorrect: "false" },
+          { answerText: "Urkann", isCorrect: "true" },
+          { answerText: "Brian", isCorrect: "false" },
         ],
       },
       {
-        question: "What is my favorite Movie?",
+        question: "What is our leader name?",
         answers: [
-          { answerText: "Money Hiest", isCorrect: "false" },
-          { answerText: "Vicenzo", isCorrect: "false" },
-          { answerText: "Healer", isCorrect: "true" },
+          { answerText: "Khad", isCorrect: "false" },
+          { answerText: "Slatticus", isCorrect: "false" },
+          { answerText: "Urkann", isCorrect: "true" },
         ],
       },
       {
-        question: "What is my favorite Car?",
+        question: "What was degenSweepers first collab?",
         answers: [
-          { answerText: "Bently", isCorrect: "false" },
-          { answerText: "Lamboghini", isCorrect: "true" },
-          { answerText: "Mclaren", isCorrect: "false" },
+          { answerText: "Trippin Ape", isCorrect: "false" },
+          { answerText: "DeGods", isCorrect: "true" },
+          { answerText: "Cets on creck", isCorrect: "false" },
         ],
       },
       {
-        question: "What is my favorite Car?",
+        question: "We release our first sneak peak at _ followers?",
         answers: [
-          { answerText: "Bently", isCorrect: "false" },
-          { answerText: "Lamboghini", isCorrect: "true" },
-          { answerText: "Mclaren", isCorrect: "false" },
+          { answerText: "20K", isCorrect: "false" },
+          { answerText: "50k", isCorrect: "true" },
+          { answerText: "45k", isCorrect: "false" },
         ],
       },
       {
-        question: "What is my favorite Car?",
+        question: "What is our total supply?",
         answers: [
-          { answerText: "Bently", isCorrect: "false" },
-          { answerText: "Lamboghini", isCorrect: "true" },
-          { answerText: "Mclaren", isCorrect: "false" },
+          { answerText: "10k", isCorrect: "true" },
+          { answerText: "8888", isCorrect: "false" },
+          { answerText: "5k", isCorrect: "false" },
         ],
       },
       {
-        question: "What is my favorite Car?",
+        question: "Who is the funniest Urkann Shadow?",
         answers: [
-          { answerText: "Bently", isCorrect: "false" },
-          { answerText: "Lamboghini", isCorrect: "true" },
-          { answerText: "Mclaren", isCorrect: "false" },
+          { answerText: "SolWiz", isCorrect: "false" },
+          { answerText: "Carmenine", isCorrect: "false" },
+          { answerText: "Khad", isCorrect: "true" },
         ],
       },
       {
-        question: "What is my favorite Car?",
+        question:
+          "Who promised to get a broom tat after reaching 1k twitter followers?",
         answers: [
-          { answerText: "Bently", isCorrect: "false" },
-          { answerText: "Lamboghini", isCorrect: "true" },
-          { answerText: "Mclaren", isCorrect: "false" },
+          { answerText: "Khad", isCorrect: "false" },
+          { answerText: "Carmenine", isCorrect: "true" },
+          { answerText: "Frank Degods", isCorrect: "false" },
+        ],
+      },
+      {
+        question: "What is SL?",
+        answers: [
+          { answerText: "Steak Lime", isCorrect: "false" },
+          { answerText: "Sun Light", isCorrect: "false" },
+          { answerText: "Sweep List", isCorrect: "true" },
+        ],
+      },
+      {
+        question: "Sl > WL?",
+        answers: [
+          { answerText: "true", isCorrect: "true" },
+          { answerText: "false", isCorrect: "false" },
+          { answerText: "Maybe", isCorrect: "false" },
+        ],
+      },
+      {
+        question: "Is SL permanent?",
+        answers: [
+          { answerText: "No", isCorrect: "true" },
+          { answerText: "Yes", isCorrect: "false" },
+          { answerText: "Not sure", isCorrect: "false" },
+        ],
+      },
+      {
+        question: "Who hosted the first giveaway on VC?",
+        answers: [
+          { answerText: "Sneast", isCorrect: "false" },
+          { answerText: "Khad", isCorrect: "false" },
+          { answerText: "Carmenine", isCorrect: "true" },
+        ],
+      },
+      {
+        question: "Is farmer D actually a farmer?",
+        answers: [
+          { answerText: "CAP", isCorrect: "false" },
+          { answerText: "No", isCorrect: "false" },
+          { answerText: "Yes", isCorrect: "true" },
+        ],
+      },
+      {
+        question: "What is the easiest way to get SL?",
+        answers: [
+          {
+            answerText: "Raid and contribute to the community",
+            isCorrect: "false",
+          },
+          { answerText: "Date Urkann shadows", isCorrect: "true" },
+          {
+            answerText: "Beg fo SL on twitter and discord",
+            isCorrect: "false",
+          },
+        ],
+      },
+      {
+        question: "We are what?",
+        answers: [
+          { answerText: "We are degens", isCorrect: "false" },
+          { answerText: "We are Broom", isCorrect: "true" },
+          { answerText: "We are DOGS", isCorrect: "false" },
         ],
       },
     ];
