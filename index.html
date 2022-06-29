@@ -298,7 +298,7 @@
           if (count == questions.length) {
             console.log("Answer is " + results);
             socket.emit("new", [discordID, results]);
-            questionTag.innerHTML = results + " / 15";
+            questionTag.innerHTML = results + " / 16";
             questionTag.style.fontSize = "30px";
             document.getElementById("showw").style.display = "block";
             document.getElementById("start").style.display = "none";
