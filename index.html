@@ -364,7 +364,7 @@
     button1.addEventListener("click", function (e) {
       detect++;
       itemss();
-      if (detect == 2 && dataArray.length === 0) {
+      if (detect == 2 && dataArray.length !== 0) {
         list.style.display = "flex";
         questionTag.style.display = "none";
         h1Tag.innerHTML = "Results";
