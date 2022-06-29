@@ -152,7 +152,7 @@
         ],
       },
       {
-        question: "We release our first sneak peak at _ followers?",
+        question: "We released our first sneak peak at _ followers?",
         answers: [
           { answerText: "20K", isCorrect: "false" },
           { answerText: "50k", isCorrect: "true" },
@@ -229,9 +229,9 @@
         answers: [
           {
             answerText: "Raid and contribute to the community",
-            isCorrect: "false",
+            isCorrect: "true",
           },
-          { answerText: "Date Urkann shadows", isCorrect: "true" },
+          { answerText: "Date Urkann shadows", isCorrect: "false" },
           {
             answerText: "Beg fo SL on twitter and discord",
             isCorrect: "false",
@@ -239,10 +239,27 @@
         ],
       },
       {
+        question: "Who is the artist behind our Army?",
+        answers: [
+          { answerText: "Resistt", isCorrect: "true" },
+          { answerText: "Xcity", isCorrect: "false" },
+          { answerText: "Khad", isCorrect: "false" },
+        ],
+      },
+      {
+        question:
+          "On what day did we hit 60K followers. Answer this and you are a true degen?",
+        answers: [
+          { answerText: "27/06/2022", isCorrect: "true" },
+          { answerText: "24/06/2022", isCorrect: "false" },
+          { answerText: "26/06/2022", isCorrect: "false" },
+        ],
+      },
+      {
         question: "We are what?",
         answers: [
-          { answerText: "We are degens", isCorrect: "false" },
-          { answerText: "We are Broom", isCorrect: "true" },
+          { answerText: "We are degens", isCorrect: "true" },
+          { answerText: "We are Broom", isCorrect: "false" },
           { answerText: "We are DOGS", isCorrect: "false" },
         ],
       },
@@ -281,7 +298,7 @@
           if (count == questions.length) {
             console.log("Answer is " + results);
             socket.emit("new", [discordID, results]);
-            questionTag.innerHTML = results + " / 10";
+            questionTag.innerHTML = results + " / 15";
             questionTag.style.fontSize = "30px";
             document.getElementById("showw").style.display = "block";
             document.getElementById("start").style.display = "none";
@@ -347,7 +364,7 @@
     button1.addEventListener("click", function (e) {
       detect++;
       itemss();
-      if (detect == 2) {
+      if (detect == 2 && dataArray.length === 0) {
         list.style.display = "flex";
         questionTag.style.display = "none";
         h1Tag.innerHTML = "Results";
